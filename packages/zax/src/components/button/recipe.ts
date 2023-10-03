@@ -67,7 +67,7 @@ const buttonRecipe = cva({
           borderRadius: "inherit",
           pointerEvents: "none",
           transition: "all 0.4s ease",
-          filter: "contrast(2) grayscale(0.4)",
+          filter: "contrast(5) grayscale(0.4)",
           borderBottom: "4px solid token(colors.colorPalette.600)",
         },
         _active: {
