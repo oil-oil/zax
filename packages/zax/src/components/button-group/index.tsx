@@ -3,7 +3,7 @@ import { defineComponent } from "vue";
 import { css } from "@/styled-system/css";
 
 const ButtonGroup = defineComponent({
-  name: "VsButtonGroup",
+  name: "ZButtonGroup",
   setup(_, { slots }) {
     return () => (
       <div
