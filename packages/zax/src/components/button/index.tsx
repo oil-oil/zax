@@ -6,6 +6,7 @@ import showRipple from "./ripple";
 import { css, cx } from "@/styled-system/css";
 
 const Button = defineComponent({
+  name: "ZButton",
   props: {
     color: {
       type: String,

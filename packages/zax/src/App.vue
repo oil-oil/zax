@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Button, { ButtonProps } from "./components/button";
+import ButtonGroup from "./components/button-group";
 import "boxicons/css/boxicons.min.css";
 import { css } from "@/styled-system/css";
 
@@ -30,16 +31,16 @@ const types = [
     </div>
 
     <div :style="{ display: 'flex', gap: '5px', padding: '10px' }">
-      <Button
-        v-for="color in colors"
-        :key="color"
-        type="primary"
-        size="lg"
-        :color="color"
-        icon
-        loading
-        ><i class="bx bxs-balloon"></i
-      ></Button>
+      <ButtonGroup
+        ><Button
+          v-for="color in colors"
+          :key="color"
+          type="outline"
+          size="lg"
+          :color="color"
+          icon
+          ><i class="bx bxs-balloon" /></Button
+      ></ButtonGroup>
     </div>
 
     <div :style="{ display: 'flex', gap: '5px', padding: '10px' }">
