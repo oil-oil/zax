@@ -19,6 +19,14 @@ export default defineConfig({
           secondary: { value: '#eff6ff' }
         }
       },
+      keyframes: {
+        rebound: {
+          '0%': { transform: 'scale(0.8)' },
+          '40%': { transform: 'scale(1.08)' },
+          '80%':{transform: 'scale(0.98)'},
+          '100%':{transform: 'scale(1)'}
+        }
+      }
     }
   },
 
