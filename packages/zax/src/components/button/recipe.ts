@@ -18,11 +18,12 @@ const buttonRecipe = cva({
     },
   },
   variants: {
-    type: {
+    variant: {
       primary: { bgColor: "colorPalette.600", color: "white" },
       flat: { bgColor: "colorPalette.50", color: "colorPalette.600" },
       outline: {
         borderWidth: "1.5px",
+        bgColor: "white",
         borderColor: "gray.200",
         color: "gray.800",
         "&:hover": {},

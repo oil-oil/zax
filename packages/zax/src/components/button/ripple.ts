@@ -26,8 +26,9 @@ const showRipple = (event: MouseEvent) => {
     background:
       "radial-gradient(circle, rgba(200,200,200,0.5), rgba(200,200,200,1))",
   });
-  rippleElement.style.left = `${event.pageX - el.offsetLeft}px`;
-  rippleElement.style.top = `${event.pageY - el.offsetTop}px`;
+  const offset = el.getBoundingClientRect();
+  rippleElement.style.left = `${event.pageX - offset.left}px`;
+  rippleElement.style.top = `${event.pageY - offset.top}px`;
 
   rippleContainer.appendChild(rippleElement);
   el.appendChild(rippleContainer);

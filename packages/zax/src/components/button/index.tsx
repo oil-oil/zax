@@ -1,3 +1,4 @@
+import { SystemStyleObject } from "@pandacss/dev";
 import { PropType, defineComponent } from "vue";
 
 import loading from "./loading";
@@ -12,8 +13,8 @@ const Button = defineComponent({
       type: String,
       default: css({ colorPalette: "blue" }),
     },
-    type: {
-      type: String as PropType<ButtonVariants["type"]>,
+    variant: {
+      type: String as PropType<ButtonVariants["variant"]>,
       default: "flat",
     },
     size: {
@@ -33,31 +34,23 @@ const Button = defineComponent({
       type: Boolean as PropType<ButtonVariants["loading"]>,
     },
     css: {
-      type: String,
+      type: Object as PropType<SystemStyleObject>,
     },
   },
   setup(props, { slots }) {
-    return () => (
-      <button
-        onMousedown={(el) => showRipple(el)}
-        class={cx(
-          props.color,
-          buttonRecipe({
-            type: props.type,
-            size: props.size,
-            shape: props.shape,
-            block: props.block,
-            icon: props.icon,
-            loading: props.loading,
-          }),
-          props.css,
-        )}
-        disabled={props.loading}
-      >
-        {props.loading && <div class={cx(props.color, loading)} />}
-        {slots?.default?.()}
-      </button>
-    );
+    return () => {
+      const { color, css: customCSS, ...rest } = props;
+      return (
+        <button
+          onMousedown={(el) => showRipple(el)}
+          class={cx(color, css(buttonRecipe.raw(rest), customCSS))}
+          disabled={props.loading}
+        >
+          {props.loading && <div class={cx(props.color, loading)} />}
+          {slots?.default?.()}
+        </button>
+      );
+    };
   },
 });
 

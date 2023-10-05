@@ -11,6 +11,8 @@
     "lint": "vue-tsc && eslint src --fix --cache"
   },
   "dependencies": {
+    "@zag-js/dialog": "^0.23.0",
+    "@zag-js/vue": "^0.23.0",
     "vue": "^3.3.4"
   },
   "devDependencies": {
