@@ -27,9 +27,8 @@ const dialogRecipe = sva({
     },
     container: {
       bgColor: "white",
-      minWidth: "400px",
-      maxWidth: "800px",
       margin: "auto",
+      color: "gray.700",
       transition: "all 0.25s ease",
       position: "relative",
       borderRadius: "20px",
@@ -38,6 +37,9 @@ const dialogRecipe = sva({
     },
     title: {
       py: "16px",
+      fontWeight: "bold",
+      fontSize: "xl",
+      color: "inherit",
     },
     content: {
       px: "24px",
@@ -47,10 +49,11 @@ const dialogRecipe = sva({
       borderRadius: "inherit",
     },
     footer: {
-      padding: "10px 24px",
-      paddingTop: "0px",
+      pt: "24px",
+      pb: "8px",
       display: "flex",
       justifyContent: "end",
+      gap: "8px",
     },
     close: {
       position: "absolute",
@@ -59,18 +62,48 @@ const dialogRecipe = sva({
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      borderRadius: "12px",
-      boxShadow: "0px 5px 20px 0px rgba(0, 0, 0, 0.3)",
+      boxShadow: "0px 5px 20px 0px rgba(0, 0, 0, 0.1)",
       transition: " all 0.25s ease",
+      width: "36px",
+      height: "36px",
       zIndex: "200",
       border: "none",
       padding: "4px",
       _hover: {
-        boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.3)",
+        boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
         transform: "translate(-2px, 2px)",
+      },
+    },
+  },
+  variants: {
+    size: {
+      xs: { container: { width: "240px" } },
+      sm: { container: { width: "320px" } },
+      md: { container: { width: "480px" } },
+      lg: { container: { width: "600px" } },
+      xl: { container: { width: "960px" } },
+    },
+    blur: {
+      false: {},
+      true: {
+        backdrop: {
+          backdropFilter: "saturate(180%) blur(5px)",
+        },
+      },
+    },
+    square: {
+      false: {},
+      true: {
+        container: {
+          borderRadius: "0px",
+        },
       },
     },
   },
 });
 
 export default dialogRecipe;
+export type DialogVariants = Exclude<
+  RecipeVariantProps<typeof dialogRecipe>,
+  undefined
+>;

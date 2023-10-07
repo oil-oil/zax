@@ -1,9 +1,10 @@
 import { SystemStyleObject } from "@pandacss/dev";
-import { PropType, defineComponent } from "vue";
+import { ButtonHTMLAttributes, PropType, defineComponent } from "vue";
 
 import loading from "./loading";
 import buttonRecipe, { ButtonVariants } from "./recipe";
 import showRipple from "./ripple";
+import { CompWithAttr } from "@/src/types/global";
 import { css, cx } from "@/styled-system/css";
 
 const Button = defineComponent({
@@ -43,7 +44,20 @@ const Button = defineComponent({
       return (
         <button
           onMousedown={(el) => showRipple(el)}
-          class={cx(color, css(buttonRecipe.raw(rest), customCSS))}
+          class={cx(
+            color,
+            css(
+              buttonRecipe.raw({
+                variant: props.variant,
+                size: props.size,
+                shape: props.shape,
+                block: props.block,
+                icon: props.icon,
+                loading: props.loading,
+              }),
+              customCSS,
+            ),
+          )}
           disabled={props.loading}
         >
           {props.loading && <div class={cx(props.color, loading)} />}
@@ -54,6 +68,6 @@ const Button = defineComponent({
   },
 });
 
-export default Button;
+export default Button as CompWithAttr<typeof Button, ButtonHTMLAttributes>;
 
 export type ButtonProps = InstanceType<typeof Button>["$props"];
