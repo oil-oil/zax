@@ -19,14 +19,22 @@ const buttonRecipe = cva({
   },
   variants: {
     variant: {
-      primary: { bgColor: "colorPalette.600", color: "white" },
+      primary: {
+        bgColor: "colorPalette.600",
+        color: "white",
+        _hover: {
+          bgColor: "colorPalette.700",
+        },
+      },
       flat: { bgColor: "colorPalette.50", color: "colorPalette.600" },
       outline: {
         borderWidth: "1.5px",
         bgColor: "white",
         borderColor: "gray.200",
         color: "gray.800",
-        "&:hover": {},
+        _hover: {
+          bgColor: "gray.50",
+        },
       },
       text: {
         color: "colorPalette.600",
@@ -77,11 +85,10 @@ const buttonRecipe = cva({
             borderBottom: "0px solid token(colors.colorPalette.600)",
           },
         },
+        _hover: {
+          bgColor: "colorPalette.700",
+        },
       },
-    },
-    shape: {
-      circle: { borderRadius: "25px" },
-      square: { borderRadius: "0px" },
     },
     size: {
       xs: { px: "8px", py: "4px", fontSize: "0.55rem", borderRadius: "8px" },
@@ -89,6 +96,10 @@ const buttonRecipe = cva({
       md: { px: "12px", py: "8px", fontSize: "0.85rem", borderRadius: "12px" },
       lg: { px: "14px", py: "10px", fontSize: "1rem", borderRadius: "14px" },
       xl: { px: "16px", py: "12px", fontSize: "1.15rem", borderRadius: "16px" },
+    },
+    shape: {
+      circle: { borderRadius: "25px" },
+      square: { borderRadius: "0" },
     },
     block: {
       true: { w: "100%" },
@@ -145,6 +156,11 @@ const buttonRecipe = cva({
         p: "12px",
         fontSize: "1.7rem",
       },
+    },
+    {
+      size: "xs",
+      shape: "square",
+      css: { borderRadius: "0" },
     },
   ],
 });
