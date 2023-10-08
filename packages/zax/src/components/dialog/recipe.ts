@@ -36,20 +36,23 @@ const dialogRecipe = sva({
       zIndex: 2,
     },
     title: {
+      px: "24px",
       py: "16px",
       fontWeight: "bold",
       fontSize: "xl",
       color: "inherit",
     },
     content: {
-      px: "24px",
       py: "8px",
       width: "100%",
       position: "relative",
       borderRadius: "inherit",
     },
+    description: {
+      px: "24px",
+    },
     footer: {
-      pt: "24px",
+      p: "24px",
       pb: "8px",
       display: "flex",
       justifyContent: "end",
@@ -96,6 +99,19 @@ const dialogRecipe = sva({
       true: {
         container: {
           borderRadius: "0px",
+        },
+      },
+    },
+    scrollBehavior: {
+      outside: {
+        backdrop: {
+          overflowY: "auto",
+        },
+      },
+      inside: {
+        description: {
+          overflowY: "auto",
+          maxHeight: "70vh",
         },
       },
     },
