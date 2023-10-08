@@ -10,10 +10,21 @@ import {
   SlotsType,
   watch,
 } from "vue";
+import {
+  computed,
+  defineComponent,
+  Teleport,
+  Transition,
+  PropType,
+  SlotsType,
+  watch,
+} from "vue";
 
+import dialogRecipe, { DialogVariants } from "./recipe";
 import dialogRecipe, { DialogVariants } from "./recipe";
 import Button from "../button";
 import Close from "../icon/close";
+import useId from "@/src/hooks/useId";
 import useId from "@/src/hooks/useId";
 import { css } from "@/styled-system/css";
 
@@ -104,6 +115,18 @@ export default defineComponent({
         },
       }),
     );
+    const [state, send] = useMachine(
+      dialog.machine({
+        id,
+        preventScroll: props.preventScroll,
+        closeOnEscapeKeyDown: props.closeOnEscapeKeyDown,
+        closeOnInteractOutside: props.closeOnInteractOutside,
+        onOpenChange({ open }) {
+          emit("update:modelValue", open);
+          emit(open ? "open" : "close");
+        },
+      }),
+    );
 
     const apiRef = computed(() =>
       dialog.connect(state.value, send, normalizeProps),
@@ -128,7 +151,36 @@ export default defineComponent({
     return () => {
       const api = apiRef.value;
       const classes = classesRef.value;
+      const classes = classesRef.value;
       return (
+        <Teleport to="body">
+          <Transition
+            leaveToClass={css({
+              opacity: 0,
+              "& > [data-part='container']": {
+                transform: "scale(0.7)",
+                boxShadow: "0px 0px 0px 0px rgba(0, 0, 0, 0.3)",
+              },
+            })}
+            enterActiveClass={css({
+              opacity: 1,
+              transition: "all 0.25s ease",
+              "& > [data-part='container']": {
+                animation: "rebound 0.4s",
+              },
+            })}
+            leaveActiveClass={css({
+              transition: "all 0.15s ease",
+              "& > [data-part='container']": {
+                transition: "all 0.15s ease",
+              },
+            })}
+          >
+            {api.isOpen && (
+              <div {...api.backdropProps} class={classes.backdrop}>
+                <div {...api.containerProps} class={classes.container}>
+                  <div {...api.contentProps} class={classes.content}>
+                    {props.showClose && (
         <Teleport to="body">
           <Transition
             leaveToClass={css({
@@ -162,6 +214,7 @@ export default defineComponent({
                         icon
                         variant="outline"
                         shape={props.square ? "square" : undefined}
+                        shape={props.square ? "square" : undefined}
                         css={dialogRecipe.raw().close as SystemStyleObject}
                       >
                         <Close />
@@ -173,6 +226,32 @@ export default defineComponent({
                     <div {...api.descriptionProps} class={classes.description}>
                       {slots.default ? slots.default() : props.content}
                     </div>
+
+                    {slots.footer
+                      ? slots.footer()
+                      : props.showFooter && (
+                          <footer class={classes.footer}>
+                            <Button
+                              variant="outline"
+                              onClick={apiRef.value.close}
+                              shape={props.square ? "square" : undefined}
+                            >
+                              {props.cancelText}
+                            </Button>
+                            <Button
+                              variant="primary"
+                              shape={props.square ? "square" : undefined}
+                            >
+                              {props.confirmText}
+                            </Button>
+                          </footer>
+                        )}
+                  </div>
+                </div>
+              </div>
+            )}
+          </Transition>
+        </Teleport>
 
                     {slots.footer
                       ? slots.footer()
