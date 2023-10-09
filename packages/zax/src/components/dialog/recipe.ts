@@ -29,7 +29,6 @@ const dialogRecipe = sva({
       bgColor: "white",
       margin: "auto",
       color: "gray.700",
-      color: "gray.700",
       transition: "all 0.25s ease",
       position: "relative",
       borderRadius: "20px",
@@ -39,9 +38,6 @@ const dialogRecipe = sva({
     title: {
       px: "24px",
       py: "16px",
-      fontWeight: "bold",
-      fontSize: "xl",
-      color: "inherit",
       fontWeight: "bold",
       fontSize: "xl",
       color: "inherit",
@@ -61,7 +57,6 @@ const dialogRecipe = sva({
       display: "flex",
       justifyContent: "end",
       gap: "8px",
-      gap: "8px",
     },
     close: {
       position: "absolute",
@@ -71,17 +66,13 @@ const dialogRecipe = sva({
       alignItems: "center",
       justifyContent: "center",
       boxShadow: "0px 5px 20px 0px rgba(0, 0, 0, 0.1)",
-      boxShadow: "0px 5px 20px 0px rgba(0, 0, 0, 0.1)",
       transition: " all 0.25s ease",
-      width: "36px",
-      height: "36px",
       width: "36px",
       height: "36px",
       zIndex: "200",
       border: "none",
       padding: "4px",
       _hover: {
-        boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
         boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.1)",
         transform: "translate(-2px, 2px)",
       },
@@ -128,10 +119,6 @@ const dialogRecipe = sva({
 });
 
 export default dialogRecipe;
-export type DialogVariants = Exclude<
-  RecipeVariantProps<typeof dialogRecipe>,
-  undefined
->;
 export type DialogVariants = Exclude<
   RecipeVariantProps<typeof dialogRecipe>,
   undefined
