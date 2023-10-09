@@ -40,7 +40,11 @@ export default defineComponent({
     },
     preventScroll: {
       type: Boolean as PropType<dialog.Context["preventScroll"]>,
-      default: true,
+      default: false,
+    },
+    scrollBehavior: {
+      type: String as PropType<"inside" | "outside">,
+      default: "inside",
     },
     closeOnInteractOutside: {
       type: Boolean as PropType<dialog.Context["closeOnEscapeKeyDown"]>,
@@ -110,6 +114,7 @@ export default defineComponent({
         blur: props.blur,
         size: props.size,
         square: props.square,
+        scrollBehavior: props.scrollBehavior,
       }),
     );
 
@@ -165,7 +170,7 @@ export default defineComponent({
                     <header {...api.titleProps} class={classes.title}>
                       {slots.title ? slots.title() : props.title}
                     </header>
-                    <div {...api.descriptionProps}>
+                    <div {...api.descriptionProps} class={classes.description}>
                       {slots.default ? slots.default() : props.content}
                     </div>
 
