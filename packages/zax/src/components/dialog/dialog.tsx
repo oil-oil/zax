@@ -9,15 +9,18 @@ import {
   PropType,
   SlotsType,
   watch,
+  HTMLAttributes,
+  onMounted,
 } from "vue";
 
 import dialogRecipe, { DialogVariants } from "./recipe";
-import Button from "../button";
+import { ZButton } from "../button";
 import Close from "../icon/close";
 import useId from "@/src/hooks/useId";
+import { CompWithAttr } from "@/src/types/global";
 import { css } from "@/styled-system/css";
 
-export default defineComponent({
+const ZDialog = defineComponent({
   name: "ZDialog",
   props: {
     modelValue: {
@@ -38,6 +41,14 @@ export default defineComponent({
       type: Boolean as PropType<DialogVariants["square"]>,
       default: false,
     },
+    blur: {
+      type: Boolean,
+      default: true,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
     preventScroll: {
       type: Boolean as PropType<dialog.Context["preventScroll"]>,
       default: false,
@@ -52,10 +63,6 @@ export default defineComponent({
     },
     closeOnEscapeKeyDown: {
       type: Boolean as PropType<dialog.Context["closeOnEscapeKeyDown"]>,
-      default: true,
-    },
-    blur: {
-      type: Boolean,
       default: true,
     },
     showClose: {
@@ -88,7 +95,7 @@ export default defineComponent({
     title?: any;
     footer?: any;
   }>,
-  emits: ["update:modelValue", "open", "close"],
+  emits: ["update:modelValue", "open", "close", "confirm"],
   setup(props, { slots, emit }) {
     const { id } = useId("dialog");
 
@@ -125,6 +132,10 @@ export default defineComponent({
       },
     );
 
+    onMounted(() => {
+      apiRef.value[props.modelValue ? "open" : "close"]();
+    });
+
     return () => {
       const api = apiRef.value;
       const classes = classesRef.value;
@@ -157,15 +168,17 @@ export default defineComponent({
                 <div {...api.containerProps} class={classes.container}>
                   <div {...api.contentProps} class={classes.content}>
                     {props.showClose && (
-                      <Button
+                      <ZButton
                         {...api.closeTriggerProps}
                         icon
                         variant="outline"
                         shape={props.square ? "square" : undefined}
-                        css={dialogRecipe.raw().close as SystemStyleObject}
+                        customCSS={
+                          dialogRecipe.raw().close as SystemStyleObject
+                        }
                       >
                         <Close />
-                      </Button>
+                      </ZButton>
                     )}
                     <header {...api.titleProps} class={classes.title}>
                       {slots.title ? slots.title() : props.title}
@@ -178,19 +191,21 @@ export default defineComponent({
                       ? slots.footer()
                       : props.showFooter && (
                           <footer class={classes.footer}>
-                            <Button
+                            <ZButton
                               variant="outline"
                               onClick={apiRef.value.close}
                               shape={props.square ? "square" : undefined}
                             >
                               {props.cancelText}
-                            </Button>
-                            <Button
+                            </ZButton>
+                            <ZButton
                               variant="primary"
                               shape={props.square ? "square" : undefined}
+                              onClick={() => emit("confirm")}
+                              loading={props.loading}
                             >
                               {props.confirmText}
-                            </Button>
+                            </ZButton>
                           </footer>
                         )}
                   </div>
@@ -203,3 +218,7 @@ export default defineComponent({
     };
   },
 });
+
+export default ZDialog;
+
+export type ZDialogProps = InstanceType<typeof ZDialog>["$props"];

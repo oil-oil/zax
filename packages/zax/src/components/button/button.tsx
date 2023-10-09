@@ -1,13 +1,13 @@
 import { SystemStyleObject } from "@pandacss/dev";
 import { ButtonHTMLAttributes, PropType, defineComponent } from "vue";
 
-import loading from "./loading";
+import loadingCSS from "./loadingCSS";
 import buttonRecipe, { ButtonVariants } from "./recipe";
 import showRipple from "./ripple";
 import { CompWithAttr } from "@/src/types/global";
 import { css, cx } from "@/styled-system/css";
 
-const Button = defineComponent({
+const ZButton = defineComponent({
   name: "ZButton",
   props: {
     color: {
@@ -34,40 +34,37 @@ const Button = defineComponent({
     loading: {
       type: Boolean as PropType<ButtonVariants["loading"]>,
     },
-    css: {
+    customCSS: {
       type: Object as PropType<SystemStyleObject>,
     },
   },
   setup(props, { slots }) {
-    return () => {
-      const { color, css: customCSS, ...rest } = props;
-      return (
-        <button
-          onMousedown={(el) => showRipple(el)}
-          class={cx(
-            color,
-            css(
-              buttonRecipe.raw({
-                variant: props.variant,
-                size: props.size,
-                shape: props.shape,
-                block: props.block,
-                icon: props.icon,
-                loading: props.loading,
-              }),
-              customCSS,
-            ),
-          )}
-          disabled={props.loading}
-        >
-          {props.loading && <div class={cx(props.color, loading)} />}
-          {slots?.default?.()}
-        </button>
-      );
-    };
+    return () => (
+      <button
+        onMousedown={(el) => showRipple(el)}
+        class={cx(
+          props.color,
+          css(
+            buttonRecipe.raw({
+              variant: props.variant,
+              size: props.size,
+              shape: props.shape,
+              block: props.block,
+              icon: props.icon,
+              loading: props.loading,
+            }),
+            props.customCSS,
+          ),
+        )}
+        disabled={props.loading}
+      >
+        {props.loading && <div class={cx(props.color, loadingCSS)} />}
+        {slots?.default?.()}
+      </button>
+    );
   },
 });
 
-export default Button as CompWithAttr<typeof Button, ButtonHTMLAttributes>;
+export default ZButton as CompWithAttr<typeof ZButton, ButtonHTMLAttributes>;
 
-export type ButtonProps = InstanceType<typeof Button>["$props"];
+export type ZButtonProps = InstanceType<typeof ZButton>["$props"];
