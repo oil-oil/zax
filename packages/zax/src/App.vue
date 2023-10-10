@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from "vue";
+import { reactive, h } from "vue";
 
 import { ZButton } from "./components/button/index.ts";
 import { useDialog } from "./components/dialog/index.ts";
@@ -21,12 +21,10 @@ import { useDialog } from "./components/dialog/index.ts";
 const dialogProps = reactive({
   title: "Edit Profile",
   content: "Make changes to your profile here. Click save when you are done.",
-  size: "sm",
+  size: "sm" as const,
 });
 
-setTimeout(() => {
-  dialogProps.size = "xl";
-}, 5000);
-
-const { open, close } = useDialog(dialogProps);
+const { open } = useDialog(dialogProps, {
+  title: h("h1", { style: { color: "red" }, innerHTML: "Hello" }),
+});
 </script>
