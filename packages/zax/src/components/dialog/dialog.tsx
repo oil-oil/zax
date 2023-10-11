@@ -11,13 +11,13 @@ import {
   watch,
   HTMLAttributes,
   onMounted,
+  VNode,
 } from "vue";
 
 import dialogRecipe, { DialogVariants } from "./recipe";
 import { ZButton } from "../button";
 import Close from "../icon/close";
 import useId from "@/src/hooks/useId";
-import { CompWithAttr } from "@/src/types/global";
 import { css } from "@/styled-system/css";
 
 const ZDialog = defineComponent({
