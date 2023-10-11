@@ -8,25 +8,10 @@
       justifyContent: 'center',
     }"
   >
-    <ZButton @click="open">show dialog</ZButton>
+    <ZAvatar name="LZH" src="https://i.pravatar.cc/44"></ZAvatar>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from "vue";
-
-import { ZButton } from "./components/button/index.ts";
-import { useDialog } from "./components/dialog/index.ts";
-
-const dialogProps = reactive({
-  title: "Edit Profile",
-  content: "Make changes to your profile here. Click save when you are done.",
-  size: "sm",
-});
-
-setTimeout(() => {
-  dialogProps.size = "xl";
-}, 5000);
-
-const { open, close } = useDialog(dialogProps);
+import { ZAvatar } from "./components/avatar";
 </script>

@@ -52,6 +52,9 @@ importers:
 
   packages/zax:
     dependencies:
+      '@zag-js/avatar':
+        specifier: ^0.23.0
+        version: 0.23.0
       '@zag-js/dialog':
         specifier: ^0.23.0
         version: 0.23.0
@@ -2054,6 +2057,17 @@ packages:
       '@zag-js/utils': 0.12.0
     dev: true
 
+  /@zag-js/avatar@0.23.0:
+    resolution: {integrity: sha512-sVm4WFn7T3+OW+VLEjDwi5/o81vb4feYD0yr432TgY1MjTSu3DBsiTbKTMNIFpHKRXre7/NhI0RzDcUSPoQqaw==}
+    dependencies:
+      '@zag-js/anatomy': 0.23.0
+      '@zag-js/core': 0.23.0
+      '@zag-js/dom-query': 0.23.0
+      '@zag-js/mutation-observer': 0.23.0
+      '@zag-js/types': 0.23.0
+      '@zag-js/utils': 0.23.0
+    dev: false
+
   /@zag-js/carousel@0.12.0:
     resolution: {integrity: sha512-qnJlyQRylCuVZNlifIWpJ3zVRqeihOoQO8+uvzwCkLXLWNb4nD0Kmo4EJHirKXOdORu5F0jeoNWCbf4GJ2MiwA==}
     dependencies:
@@ -2297,6 +2311,10 @@ packages:
   /@zag-js/mutation-observer@0.12.0:
     resolution: {integrity: sha512-1y+PqhB57LR9MdzEbw9WloFvAxrxYONX05zzfOqJYvzk6vjHnPuoxpXdkF9FPcK+DXdiMR+SUaZ8qSGwEUaqoA==}
     dev: true
+
+  /@zag-js/mutation-observer@0.23.0:
+    resolution: {integrity: sha512-RC6NxCiz6r6SRzl46AGHRgR1xcflSkESlUNk3Ah9vUcEWmvOsGs/TYlDV8RvqWldzVN24TMe0s9L/s6Th7vsvQ==}
+    dev: false
 
   /@zag-js/number-input@0.12.0:
     resolution: {integrity: sha512-UGUiuzsOZywxtumNYR4/UieZun+nRzhgKiWnH6kI7zyjUZu3jWFsK+2diNHl0cjvXFEki42RreMXd+eLDizdAA==}
