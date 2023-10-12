@@ -34,6 +34,14 @@ const ZAvatar = defineComponent({
     src: {
       type: String,
     },
+    size: {
+      type: Number,
+      default: 44,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props) {
     const { id } = useId("avatar");
@@ -45,20 +53,32 @@ const ZAvatar = defineComponent({
     );
 
     const classesRef = computed(() => avatarRecipe());
+    const sizeStyle = { width: `${props.size}px`, height: `${props.size}px` };
 
     return () => {
       const api = apiRef.value;
       const classes = classesRef.value;
+
       return (
-        <div {...api.rootProps} class={classes.container}>
-          <div {...api.fallbackProps} class={classes.avatar}>
+        <div
+          {...api.rootProps}
+          style={sizeStyle}
+          class={classes.root}
+          v-loading:default={props.loading}
+        >
+          <div
+            {...api.fallbackProps}
+            style={sizeStyle}
+            class={classes.fallback}
+          >
             {generateAvatarName(props.name)}
           </div>
           <img
             alt={props.name}
             src={props.src}
             {...api.imageProps}
-            class={classes.img}
+            style={sizeStyle}
+            class={classes.image}
           />
         </div>
       );

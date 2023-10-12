@@ -1,21 +1,17 @@
 import { RecipeVariantProps, sva } from "@/styled-system/css";
 
 const avatarRecipe = sva({
-  slots: ["container", "avatar", "img"],
+  slots: ["root", "fallback", "image"],
   base: {
-    container: {
-      width: "44px",
-      height: "44px",
+    root: {
       borderRadius: "35%",
       background: "gray.200",
       userSelect: "none",
     },
-    avatar: {
+    fallback: {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      width: "44px",
-      height: "44px",
       color: "gray.600",
       boxShadow: "inset 0px 0px 0px 0px rgba(0, 0, 0, 0.05)",
       transition: "all 0.2s ease",
@@ -23,9 +19,7 @@ const avatarRecipe = sva({
         boxShadow: "inset 0px 0px 40px 0px rgba(0, 0, 0, 0.05)",
       },
     },
-    img: {
-      width: "44px",
-      height: "44px",
+    image: {
       transition: "all 0.25s ease",
       _hover: {
         transform: "scale(1.1)",
