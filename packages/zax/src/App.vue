@@ -8,10 +8,20 @@
       justifyContent: 'center',
     }"
   >
-    <ZAvatar name="LZH" src="https://i.pravatar.cc/44"></ZAvatar>
+    <ZAvatar
+      name="LZH"
+      src="https://i.pravatar.cc/44"
+      :loading="loading"
+    ></ZAvatar>
+    <ZButton @click="loading = !loading">loading</ZButton>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+
 import { ZAvatar } from "./components/avatar";
+import { ZButton } from "./components/button";
+
+const loading = ref(false);
 </script>
