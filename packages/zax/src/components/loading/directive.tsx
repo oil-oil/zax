@@ -1,37 +1,47 @@
-import { App, Directive, createApp, ref } from "vue";
+import { Directive, DirectiveBinding, render } from "vue";
 
 import ZLoading, { ZLoadingProps } from "./loading";
 
-let app: App<Element>;
-const LoadingDom = document.createElement("div");
+const domId = "LOADING_CONTAINER";
+
+const mountLoading = (el: HTMLElement, binding: DirectiveBinding<any>) => {
+  const size = Math.min(el.offsetWidth, el.offsetHeight);
+  const loadingDom = document.createElement("div");
+  loadingDom.id = domId;
+  loadingDom.style.borderRadius = "inherit";
+  el.appendChild(loadingDom);
+  render(
+    <ZLoading size={size} type={binding.arg as ZLoadingProps["type"]} />,
+    loadingDom,
+  );
+};
+
+const unmountLoading = (el: HTMLElement) => {
+  const dom = el.querySelector(`#${domId}`);
+  if (dom) {
+    el.removeChild(dom);
+  }
+};
 
 const ZLoadingDirective: Directive<HTMLElement> = {
   mounted(el, binding) {
     // eslint-disable-next-line no-param-reassign
     el.style.position = "relative";
-    app = createApp(() => (
-      <ZLoading type={binding.arg as ZLoadingProps["type"]} />
-    ));
-    el.appendChild(LoadingDom);
     if (binding.value) {
-      app.mount(LoadingDom);
+      mountLoading(el, binding);
     }
   },
-  updated(_, binding) {
+  updated(el, binding) {
     if (binding.value !== binding.oldValue) {
       if (binding.value) {
-        app = createApp(() => (
-          <ZLoading type={binding.arg as ZLoadingProps["type"]} />
-        ));
-        app.mount(LoadingDom);
+        mountLoading(el, binding);
       } else {
-        app.unmount();
+        unmountLoading(el);
       }
     }
   },
   unmounted(el) {
-    el.appendChild(LoadingDom);
-    app.unmount();
+    unmountLoading(el);
   },
 };
 

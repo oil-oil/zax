@@ -14,6 +14,9 @@ const ZLoading = defineComponent({
       type: String as PropType<LoadingVariants["type"]>,
       default: "default",
     },
+    size: {
+      type: Number,
+    },
   },
   emits: ["update:visible", "update:text"],
   setup(props) {
@@ -26,7 +29,13 @@ const ZLoading = defineComponent({
         enterToClass={css({ opacity: 0 })}
       >
         <div ref={rootRef} class={classes.root}>
-          <div class={classes.container}>
+          <div
+            class={classes.container}
+            style={{
+              width: `${props.size}px`,
+              height: `${props.size}px`,
+            }}
+          >
             {([1, 2, 3] as const).map((item) => (
               <div key={item} class={cx(props.color, classes[`load${item}`])} />
             ))}

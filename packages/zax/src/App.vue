@@ -13,6 +13,7 @@
       src="https://i.pravatar.cc/44"
       :loading="loading"
     ></ZAvatar>
+    <ZButton :loading="loading">loading</ZButton>
     <ZButton @click="loading = !loading">loading</ZButton>
   </div>
 </template>

@@ -41,6 +41,7 @@ const ZButton = defineComponent({
   setup(props, { slots }) {
     return () => (
       <button
+        v-loading={props.loading}
         onMousedown={(el) => showRipple(el)}
         class={cx(
           props.color,
@@ -58,7 +59,7 @@ const ZButton = defineComponent({
         )}
         disabled={props.loading}
       >
-        {props.loading && <div class={cx(props.color, loadingCSS)} />}
+        {/* {props.loading && <div class={cx(props.color, loadingCSS)} />} */}
         {slots?.default?.()}
       </button>
     );
