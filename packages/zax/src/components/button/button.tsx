@@ -1,9 +1,9 @@
 import { SystemStyleObject } from "@pandacss/dev";
 import { ButtonHTMLAttributes, PropType, defineComponent } from "vue";
 
-import loadingCSS from "./loadingCSS";
 import buttonRecipe, { ButtonVariants } from "./recipe";
 import showRipple from "./ripple";
+import { ZLoadingProps } from "../loading/loading";
 import { CompWithAttr } from "@/src/types/global";
 import { css, cx } from "@/styled-system/css";
 
@@ -34,6 +34,9 @@ const ZButton = defineComponent({
     loading: {
       type: Boolean as PropType<ButtonVariants["loading"]>,
     },
+    loadingType: {
+      type: String as PropType<ZLoadingProps["type"]>,
+    },
     customCSS: {
       type: Object as PropType<SystemStyleObject>,
     },
@@ -41,7 +44,7 @@ const ZButton = defineComponent({
   setup(props, { slots }) {
     return () => (
       <button
-        v-loading={props.loading}
+        v-loading={[props.loading, props.loadingType]}
         onMousedown={(el) => showRipple(el)}
         class={cx(
           props.color,
@@ -59,7 +62,6 @@ const ZButton = defineComponent({
         )}
         disabled={props.loading}
       >
-        {/* {props.loading && <div class={cx(props.color, loadingCSS)} />} */}
         {slots?.default?.()}
       </button>
     );

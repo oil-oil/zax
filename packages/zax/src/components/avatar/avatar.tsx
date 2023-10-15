@@ -1,8 +1,9 @@
 import * as avatar from "@zag-js/avatar";
 import { normalizeProps, useMachine } from "@zag-js/vue";
-import { computed, defineComponent } from "vue";
+import { PropType, computed, defineComponent } from "vue";
 
 import avatarRecipe from "./recipe";
+import { ZLoadingProps } from "../loading/loading";
 import useId from "@/src/hooks/useId";
 
 function generateAvatarName(name?: string): string {
@@ -35,12 +36,16 @@ const ZAvatar = defineComponent({
       type: String,
     },
     size: {
-      type: Number,
-      default: 44,
+      type: String,
+      default: "64px",
     },
     loading: {
       type: Boolean,
       default: false,
+    },
+    loadingType: {
+      type: String as PropType<ZLoadingProps["type"]>,
+      default: "default",
     },
   },
   setup(props) {
@@ -53,7 +58,7 @@ const ZAvatar = defineComponent({
     );
 
     const classesRef = computed(() => avatarRecipe());
-    const sizeStyle = { width: `${props.size}px`, height: `${props.size}px` };
+    const sizeStyle = { width: props.size, height: props.size };
 
     return () => {
       const api = apiRef.value;
@@ -64,7 +69,7 @@ const ZAvatar = defineComponent({
           {...api.rootProps}
           style={sizeStyle}
           class={classes.root}
-          v-loading:default={props.loading}
+          v-loading={[props.loading, props.loadingType]}
         >
           <div
             {...api.fallbackProps}
