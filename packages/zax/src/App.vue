@@ -6,14 +6,29 @@
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      gap: '10px',
     }"
   >
+    <ZAvatar name="LZH" src="https://i.pravatar.cc/44?u=1" :loading="loading" />
     <ZAvatar
       name="LZH"
-      src="https://i.pravatar.cc/44"
+      src="https://i.pravatar.cc/44?u=2"
       :loading="loading"
-    ></ZAvatar>
-    <ZButton :loading="loading">loading</ZButton>
+      loadingType="corner"
+    />
+    <ZAvatar
+      name="LZH"
+      src="https://i.pravatar.cc/44?u=3"
+      :loading="loading"
+      loadingType="point"
+    />
+    <ZAvatar
+      name="LZH"
+      src="https://i.pravatar.cc/44?u=4"
+      :loading="loading"
+      loadingType="square"
+    />
+    <!-- <ZButton @click="loading = !loading" :loading="loading">loading</ZButton> -->
     <ZButton @click="loading = !loading">loading</ZButton>
   </div>
 </template>

@@ -3,12 +3,12 @@ import { createApp, onMounted, onUnmounted, ref } from "vue";
 import { ZDialog, ZDialogProps } from ".";
 
 const useDialog = (
-  props: Omit<ZDialogProps, "modelValue">,
-  slots: InstanceType<typeof ZDialog>["$slots"],
+  props?: Omit<ZDialogProps, "modelValue">,
+  slots?: InstanceType<typeof ZDialog>["$slots"],
 ) => {
   const isOpen = ref(false);
   const app = createApp(() => (
-    <ZDialog {...props} v-model={isOpen.value} v-slots={slots} />
+    <ZDialog {...(props || {})} v-model={isOpen.value} v-slots={slots || {}} />
   ));
 
   let DialogDom: HTMLDivElement;

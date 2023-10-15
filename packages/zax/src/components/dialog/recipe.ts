@@ -16,7 +16,7 @@ const dialogRecipe = sva({
       position: "fixed",
       left: "0",
       top: "0",
-      zIndex: "1",
+      zIndex: "token(zIndex.dialog)",
       width: "full",
       height: "full",
       py: "80px",
@@ -33,7 +33,6 @@ const dialogRecipe = sva({
       position: "relative",
       borderRadius: "20px",
       boxShadow: "0px 5px 30px 0px rgba(0, 0, 0, 0.2)",
-      zIndex: 2,
     },
     title: {
       px: "24px",
