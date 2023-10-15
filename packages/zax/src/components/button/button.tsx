@@ -44,6 +44,7 @@ const ZButton = defineComponent({
   setup(props, { slots }) {
     return () => (
       <button
+        v-loading={[props.loading, props.loadingType]}
         onMousedown={(el) => showRipple(el)}
         class={cx(
           props.color,
