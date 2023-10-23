@@ -1,1 +1,1 @@
-export { default as ZAvatar } from "./avatar";
+export { default as ZAvatar, type ZAvatarProps } from "./ZAvatar";

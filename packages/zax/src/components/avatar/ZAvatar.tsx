@@ -1,10 +1,11 @@
 import * as avatar from "@zag-js/avatar";
 import { normalizeProps, useMachine } from "@zag-js/vue";
-import { PropType, computed, defineComponent } from "vue";
+import { HTMLAttributes, PropType, computed, defineComponent } from "vue";
 
 import avatarRecipe from "./recipe";
-import { ZLoadingProps } from "../loading/loading";
+import { ZLoadingProps } from "../loading/ZLoading";
 import useId from "@/src/hooks/useId";
+import { CompWithAttr } from "@/src/types/global";
 
 function generateAvatarName(name?: string): string {
   if (!name) {
@@ -91,4 +92,5 @@ const ZAvatar = defineComponent({
   },
 });
 
-export default ZAvatar;
+export default ZAvatar as CompWithAttr<typeof ZAvatar, HTMLAttributes>;
+export type ZAvatarProps = InstanceType<typeof ZAvatar>["$props"];

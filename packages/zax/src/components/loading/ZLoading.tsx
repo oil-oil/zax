@@ -1,6 +1,14 @@
-import { PropType, Transition, computed, defineComponent, ref } from "vue";
+import {
+  HTMLAttributes,
+  PropType,
+  Transition,
+  computed,
+  defineComponent,
+  ref,
+} from "vue";
 
 import loadingRecipe, { LoadingVariants } from "./recipe";
+import { CompWithAttr } from "@/src/types/global";
 import { css, cx } from "@/styled-system/css";
 
 const ZLoading = defineComponent({
@@ -54,6 +62,6 @@ const ZLoading = defineComponent({
   },
 });
 
-export default ZLoading;
+export default ZLoading as CompWithAttr<typeof ZLoading, HTMLAttributes>;
 
 export type ZLoadingProps = InstanceType<typeof ZLoading>["$props"];

@@ -1,6 +1,6 @@
 import { Directive, DirectiveBinding, render } from "vue";
 
-import ZLoading, { ZLoadingProps } from "./loading";
+import ZLoading, { ZLoadingProps } from "./ZLoading";
 
 const domId = "LOADING_CONTAINER";
 
