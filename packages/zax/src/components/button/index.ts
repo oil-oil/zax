@@ -1,1 +1,1 @@
-export { default as ZButton, type ZButtonProps } from "./button";
+export { default as ZButton, type ZButtonProps } from "./ZButton";

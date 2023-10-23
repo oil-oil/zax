@@ -9,9 +9,7 @@ import {
   PropType,
   SlotsType,
   watch,
-  HTMLAttributes,
   onMounted,
-  VNode,
 } from "vue";
 
 import dialogRecipe, { DialogVariants } from "./recipe";

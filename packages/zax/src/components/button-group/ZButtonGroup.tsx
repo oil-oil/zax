@@ -1,8 +1,9 @@
-import { defineComponent } from "vue";
+import { ButtonHTMLAttributes, defineComponent } from "vue";
 
+import { CompWithAttr } from "@/src/types/global";
 import { css } from "@/styled-system/css";
 
-const ButtonGroup = defineComponent({
+const ZButtonGroup = defineComponent({
   name: "ZButtonGroup",
   setup(_, { slots }) {
     return () => (
@@ -33,6 +34,7 @@ const ButtonGroup = defineComponent({
   },
 });
 
-export default ButtonGroup;
-
-export type ButtonGroupProps = InstanceType<typeof ButtonGroup>["$props"];
+export default ZButtonGroup as CompWithAttr<
+  typeof ZButtonGroup,
+  ButtonHTMLAttributes
+>;

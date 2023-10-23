@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes, PropType, defineComponent } from "vue";
 
 import buttonRecipe, { ButtonVariants } from "./recipe";
 import showRipple from "./ripple";
-import { ZLoadingProps } from "../loading/loading";
+import { ZLoadingProps } from "../loading/ZLoading";
 import { CompWithAttr } from "@/src/types/global";
 import { css, cx } from "@/styled-system/css";
 
