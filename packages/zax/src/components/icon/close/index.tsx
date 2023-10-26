@@ -49,7 +49,7 @@ const Close = defineComponent({
           }),
           props.css,
         )}
-      ></i>
+      />
     );
   },
 });
