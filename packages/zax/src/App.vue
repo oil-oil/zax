@@ -1,5 +1,7 @@
 <template>
-  <ZSelect></ZSelect>
+  <div style="width: 120px">
+    <ZSelect></ZSelect>
+  </div>
 </template>
 
 <script setup lang="ts">

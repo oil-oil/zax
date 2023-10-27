@@ -1,5 +1,6 @@
-import { defineComponent } from "vue";
+import { HTMLAttributes, defineComponent } from "vue";
 
+import { CompWithAttr } from "@/src/types/global";
 import { css, cx } from "@/styled-system/css";
 
 const Close = defineComponent({
@@ -54,4 +55,4 @@ const Close = defineComponent({
   },
 });
 
-export default Close;
+export default Close as CompWithAttr<typeof Close, HTMLAttributes>;

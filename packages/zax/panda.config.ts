@@ -16,6 +16,12 @@ export default defineConfig({
       tokens: {
         zIndex: {
           dialog: { value: 1000 }
+        },
+        opacity: {
+          shadow: { value: 0.05 }
+        },
+        colors:{
+          text:{value:'rgb(44, 62, 80)'}
         }
       },
       keyframes: {
