@@ -24,11 +24,7 @@ const selectRecipe = sva({
       backgroundColor: "gray.100",
       fontSize: "0.8rem",
       cursor: "pointer",
-      _hover: {
-        transform: "translateY(-2px)",
-        backgroundColor: "white",
-        boxShadow: "0px 5px 25px -4px rgba(0, 0, 0, token(opacity.shadow))",
-      },
+      whiteSpace: "nowrap",
     },
     label: {
       fontSize: "0.8rem",
@@ -44,7 +40,6 @@ const selectRecipe = sva({
       padding: "6px 10px",
       transition: "all 0.25s ease",
       borderRadius: "5px",
-      color: "token(colors.text)",
       fontSize: "0.8rem",
       cursor: "pointer",
     },

@@ -51,37 +51,41 @@ export default defineComponent({
         <>
           <div>
             <label {...api.labelProps}>Label</label>
-            <button {...api.triggerProps} class={classes.trigger}>
+            <button
+              {...api.triggerProps}
+              class={cx(
+                classes.trigger,
+                !api.hasSelectedItems &&
+                  css({
+                    color: "gray.400",
+                  }),
+              )}
+            >
               <span>{api.valueAsString || "Select option"}</span>
-              <Arrow />
+              <Arrow
+                customCSS={css({
+                  marginLeft: "16px",
+                  transform: api.isOpen ? "rotate(45deg)" : "rotate(-135deg)",
+                })}
+              />
             </button>
           </div>
 
           <Teleport to="body">
             <Transition
               leaveToClass={css({
-                "& > [data-part='positioner']": {
-                  opacity: 0,
-                  transform: "translate(0, -10px)",
-                  boxShadow: "0px 0px 0px 0px token(opacity.shadow)",
-                },
+                opacity: 0,
+                boxShadow: "0px 0px 0px 0px token(opacity.shadow)",
               })}
               enterFromClass={css({
-                "& > [data-part='positioner']": {
-                  opacity: 0,
-                  transform: "translate(0, -10px)",
-                  boxShadow: "0px 0px 0px 0px token(opacity.shadow)",
-                },
+                opacity: 0,
+                boxShadow: "0px 0px 0px 0px token(opacity.shadow)",
               })}
               enterActiveClass={css({
-                "& > [data-part='positioner']": {
-                  transition: "all 0.25s ease",
-                },
+                transition: "opacity 0.2s ease, margin 0.2s ease",
               })}
               leaveActiveClass={css({
-                "& > [data-part='positioner']": {
-                  transition: "all 0.25s ease",
-                },
+                transition: "opacity 0.2s ease, margin 0.2s ease",
               })}
             >
               {api.isOpen && (
@@ -94,12 +98,15 @@ export default defineComponent({
                         class={cx(
                           props.color,
                           classes.item,
-                          !api.getItemIndicatorProps({ item }).hidden
-                            ? css({
-                                background: "colorPalette.100",
-                                color: "colorPalette.600",
-                              })
-                            : "",
+                          css(
+                            api.getItemState({ item }).isSelected
+                              ? {
+                                  background:
+                                    "color-mix(in srgb, token(colors.colorPalette.100) 40%, transparent)",
+                                  color: "colorPalette.600",
+                                }
+                              : { color: "token(colors.text)" },
+                          ),
                         )}
                       >
                         <span class={classes.itemLabel}>{item.label}</span>
