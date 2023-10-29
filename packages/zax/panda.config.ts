@@ -18,7 +18,7 @@ export default defineConfig({
           dialog: { value: 1000 }
         },
         opacity: {
-          shadow: { value: 0.05 }
+          shadow: { value: 0.1 }
         },
         colors:{
           text:{value:'rgb(44, 62, 80)'}

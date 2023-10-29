@@ -25,6 +25,7 @@ const selectRecipe = sva({
       fontSize: "0.8rem",
       cursor: "pointer",
       whiteSpace: "nowrap",
+      outline: "none",
     },
     label: {
       fontSize: "0.8rem",
@@ -42,12 +43,7 @@ const selectRecipe = sva({
       borderRadius: "5px",
       fontSize: "0.8rem",
       cursor: "pointer",
-    },
-    itemLabel: {
-      _hover: {
-        transform: "translateX(5px)",
-        color: "colorPalette.600",
-      },
+      margin: "2px",
     },
   },
   variants: {

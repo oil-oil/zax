@@ -1,37 +1,51 @@
 import * as select from "@zag-js/select";
 import { normalizeProps, useMachine } from "@zag-js/vue";
-import { computed, defineComponent, Teleport, Transition } from "vue";
+import {
+  computed,
+  defineComponent,
+  Teleport,
+  Transition,
+  PropType,
+  watch,
+  toRaw,
+} from "vue";
 
 import selectRecipe from "./recipe";
 import Arrow from "../icon/arrow";
 import useId from "@/src/hooks/useId";
 import { css, cx } from "@/styled-system/css";
 
-const selectData = [
-  { label: "Nigeria", value: "NG" },
-  { label: "Japan", value: "JP" },
-  // ...
-] as const;
-
 export default defineComponent({
   name: "ZSelect",
   props: {
+    modelValue: {
+      type: String,
+    },
+    options: {
+      type: Array as PropType<{ label: string; value: string }[]>,
+      required: true,
+    },
     color: {
       type: String,
       default: css({ colorPalette: "blue" }),
     },
+    multiple: {
+      type: Boolean,
+      default: false,
+    },
   },
-  setup(props) {
+  emits: ["update:modelValue"],
+  setup(props, { emit }) {
     const { id } = useId("select");
     const [state, send] = useMachine(
       select.machine({
         id,
         collection: select.collection({
-          items: selectData,
+          items: toRaw(props.options),
         }),
-        positioning: {
-          strategy: "fixed",
-          placement: "bottom",
+        multiple: props.modelValue,
+        onValueChange(details) {
+          emit("update:modelValue", details.value);
         },
       }),
     );
@@ -42,6 +56,15 @@ export default defineComponent({
 
     const classesRef = computed(() =>
       selectRecipe({ isOpen: apiRef.value.isOpen }),
+    );
+
+    watch(
+      () => props.modelValue,
+      () => {
+        if (props.modelValue) {
+          apiRef.value.selectValue(props.modelValue);
+        }
+      },
     );
 
     return () => {
@@ -90,26 +113,32 @@ export default defineComponent({
             >
               {api.isOpen && (
                 <div {...api.positionerProps} class={classes.positioner}>
-                  <ul {...api.contentProps}>
-                    {selectData.map((item) => (
+                  <ul {...api.contentProps} class={css({ outline: "none" })}>
+                    {props.options.map((item) => (
                       <li
                         key={item.value}
                         {...api.getItemProps({ item })}
                         class={cx(
                           props.color,
                           classes.item,
-                          css(
-                            api.getItemState({ item }).isSelected
+                          css({
+                            ...(api.getItemState({ item }).isHighlighted
+                              ? {
+                                  background:
+                                    "color-mix(in srgb, token(colors.gray.200) 40%, transparent)",
+                                }
+                              : {}),
+                            ...(api.getItemState({ item }).isSelected
                               ? {
                                   background:
                                     "color-mix(in srgb, token(colors.colorPalette.100) 40%, transparent)",
                                   color: "colorPalette.600",
                                 }
-                              : { color: "token(colors.text)" },
-                          ),
+                              : { color: "token(colors.text)" }),
+                          }),
                         )}
                       >
-                        <span class={classes.itemLabel}>{item.label}</span>
+                        <span>{item.label}</span>
                       </li>
                     ))}
                   </ul>
