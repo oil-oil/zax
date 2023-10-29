@@ -3,54 +3,53 @@ import { HTMLAttributes, defineComponent } from "vue";
 import { CompWithAttr } from "@/src/types/global";
 import { css, cx } from "@/styled-system/css";
 
-const IconArrow = defineComponent({
+const Arrow = defineComponent({
   props: {
     color: {
       type: String,
       default: css({ colorPalette: "gray" }),
     },
-    css: {
+    customCSS: {
       type: String,
     },
   },
-  setup(props, { attrs }) {
+  setup(props) {
     return () => (
       <i
-        {...attrs}
-        ref="icon"
         class={cx(
           props.color,
           css({
+            display: "inline-block",
             pointerEvents: "none",
             width: "7px",
             height: "7px",
-            transform: "rotate(-135deg)",
             transition: "all 0.25s ease",
             transformOrigin: "center",
-            _after: {
-              content: "",
-              width: "100%",
-              height: "1px",
-              background: "colorPalette.600",
-              position: "absolute",
-              display: "block",
-              top: "0px",
-            },
+            position: "relative",
             _before: {
+              content: '""',
+              position: "absolute",
               top: "0px",
-              content: "",
               width: "1px",
               height: "100%",
               background: "colorPalette.600",
+              display: "block",
+            },
+            _after: {
+              content: '""',
               position: "absolute",
+              top: "0px",
+              width: "100%",
+              height: "1px",
+              background: "colorPalette.600",
               display: "block",
             },
           }),
-          props.css,
+          props.customCSS,
         )}
       />
     );
   },
 });
 
-export default IconArrow as CompWithAttr<typeof IconArrow, HTMLAttributes>;
+export default Arrow as CompWithAttr<typeof Arrow, HTMLAttributes>;
