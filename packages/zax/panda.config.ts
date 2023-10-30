@@ -20,8 +20,8 @@ export default defineConfig({
         opacity: {
           shadow: { value: 0.1 }
         },
-        colors:{
-          text:{value:'rgb(44, 62, 80)'}
+        colors: {
+          text: { value: 'rgb(44, 62, 80)' }
         }
       },
       keyframes: {
@@ -49,6 +49,25 @@ export default defineConfig({
           "50%": { transform: "rotateX(180deg) rotateY(0deg)" },
           "75%": { transform: "rotateX(0deg) rotateY(180deg)" },
           "100%": { transform: "rotateX(0deg) rotateY(0deg)" }
+        },
+        checkShort: {
+          "0%": {
+            height:0,
+          },
+          "100%":{
+            height: "full",
+          }
+        },
+        checkLong: {
+          "0%": {
+            width: 0,
+          },
+          "30%":{
+            width: 0,
+          },
+          "100%": {
+            width: "full",
+          }
         }
       }
     }
