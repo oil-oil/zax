@@ -1,16 +1,19 @@
 <template>
-  <div style="width: 120px">
-    <ZSelect
-      :color="css({ colorPalette: 'red' })"
-      :options="[
-        { label: 'Nigeria', value: 'NG' },
-        { label: 'Japan', value: 'JP' },
-      ]"
-    ></ZSelect>
+  <div
+    style="
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    "
+  >
+    <div style="width: 120px">
+      <ZCheckbox></ZCheckbox>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ZSelect } from "./components";
-import { css } from "@/styled-system/css";
+import { ZCheckbox } from "./components/checkbox";
 </script>

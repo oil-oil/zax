@@ -9,6 +9,10 @@ const Arrow = defineComponent({
       type: String,
       default: css({ colorPalette: "gray" }),
     },
+    size: {
+      type: String,
+      default: css({ colorPalette: "gray" }),
+    },
     customCSS: {
       type: String,
     },

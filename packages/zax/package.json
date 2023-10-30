@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@zag-js/avatar": "^0.23.0",
+    "@zag-js/checkbox": "^0.26.0",
     "@zag-js/dialog": "^0.23.0",
     "@zag-js/select": "^0.26.0",
     "@zag-js/vue": "^0.23.0",
