@@ -38,24 +38,20 @@ const IconCheck = defineComponent({
         >
           <div
             class={css({
-              position: "absolute",
               width: "full",
               height: "full",
               borderLeft: "2px solid white",
               animation: "checkShort 0.15s",
-              left: "0",
             })}
-          ></div>
+          />
           <div
             class={css({
-              position: "absolute",
               width: "full",
               height: "full",
               borderBottom: "2px solid white",
               animation: "checkLong 0.5s",
-              left: "0",
             })}
-          ></div>
+          />
         </div>
       </i>
     );
