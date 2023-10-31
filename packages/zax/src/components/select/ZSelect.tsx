@@ -36,14 +36,13 @@ export default defineComponent({
   },
   emits: ["update:modelValue"],
   setup(props, { emit }) {
-    const { id } = useId("select");
     const [state, send] = useMachine(
       select.machine({
-        id,
+        id: useId("select"),
         collection: select.collection({
           items: toRaw(props.options),
         }),
-        multiple: props.modelValue,
+        multiple: props.multiple,
         onValueChange(details) {
           emit("update:modelValue", details.value);
         },

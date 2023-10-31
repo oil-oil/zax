@@ -27,10 +27,10 @@
     "lint": "vue-tsc && eslint src --fix --cache"
   },
   "dependencies": {
-    "@zag-js/avatar": "^0.23.0",
+    "@zag-js/avatar": "^0.27.1",
     "@zag-js/checkbox": "^0.27.1",
     "@zag-js/dialog": "^0.27.1",
-    "@zag-js/select": "^0.26.0",
+    "@zag-js/select": "^0.27.1",
     "@zag-js/vue": "^0.27.1",
     "vue": "^3.3.4"
   },
