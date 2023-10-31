@@ -95,11 +95,9 @@ const ZDialog = defineComponent({
   }>,
   emits: ["update:modelValue", "open", "close", "confirm"],
   setup(props, { slots, emit }) {
-    const { id } = useId("dialog");
-
     const [state, send] = useMachine(
       dialog.machine({
-        id,
+        id: useId("dialog"),
         preventScroll: props.preventScroll,
         closeOnEscapeKeyDown: props.closeOnEscapeKeyDown,
         closeOnInteractOutside: props.closeOnInteractOutside,
@@ -163,7 +161,7 @@ const ZDialog = defineComponent({
           >
             {api.isOpen && (
               <div {...api.backdropProps} class={classes.backdrop}>
-                <div {...api.containerProps} class={classes.container}>
+                <div {...api.positionerProps} class={classes.positioner}>
                   <div {...api.contentProps} class={classes.content}>
                     {props.showClose && (
                       <ZButton

@@ -1,8 +1,9 @@
 import * as checkbox from "@zag-js/checkbox";
 import { normalizeProps, useMachine } from "@zag-js/vue";
-import { defineComponent, computed, Transition } from "vue";
+import { defineComponent, computed, Transition, watch } from "vue";
 
 import IconCheck from "../icon/check";
+import useId from "@/src/hooks/useId";
 import { css, cx } from "@/styled-system/css";
 
 const ZCheckbox = defineComponent({
@@ -15,13 +16,30 @@ const ZCheckbox = defineComponent({
     modelValue: {
       type: Boolean,
     },
+    label: {
+      type: String,
+    },
   },
   emits: ["update:modelValue"],
-  setup(props) {
-    const [state, send] = useMachine(checkbox.machine({ id: "checkbox" }));
+  setup(props, { emit }) {
+    const [state, send] = useMachine(
+      checkbox.machine({
+        id: useId("checkbox"),
+        onCheckedChange(detail) {
+          emit("update:modelValue", detail.checked);
+        },
+      }),
+    );
 
     const apiRef = computed(() =>
       checkbox.connect(state.value, send, normalizeProps),
+    );
+
+    watch(
+      () => props.modelValue,
+      () => {
+        apiRef.value.setChecked(props.modelValue);
+      },
     );
 
     return () => {
@@ -49,7 +67,7 @@ const ZCheckbox = defineComponent({
                 : "token(colors.gray.200) solid 2px",
               transition: "all 0.3s",
               _groupHover: {
-                background: "token(colors.gray.200)",
+                background: "gray.200",
               },
               marginRight: "4px",
               flexShrink: "0",
@@ -102,9 +120,7 @@ const ZCheckbox = defineComponent({
               )}
             </Transition>
           </div>
-          <span {...api.labelProps}>
-            {api.isChecked ? "checked" : "unchecked"}
-          </span>
+          <span {...api.labelProps}>{props.label} </span>
 
           <input {...api.hiddenInputProps} />
         </label>
