@@ -9,12 +9,18 @@
     "
   >
     <div style="width: 120px">
-      <ZCheckbox label="label1" :color="css({ colorPalette: 'red' })" />
+      <ZSelect
+        :options="[
+          { label: 'Vue', value: 'Vue' },
+          { label: 'React', value: 'React' },
+          { label: 'Solid', value: 'Solid' },
+        ]"
+        multiple
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ZCheckbox } from "./components/checkbox";
-import { css } from "@/styled-system/css";
+import { ZSelect } from "./components";
 </script>

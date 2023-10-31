@@ -62,7 +62,7 @@ export default defineConfig({
           "0%": {
             width: 0,
           },
-          "30%":{
+          "50%":{
             width: 0,
           },
           "100%": {

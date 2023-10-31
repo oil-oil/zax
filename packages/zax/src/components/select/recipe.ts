@@ -48,12 +48,18 @@ const selectRecipe = sva({
   },
   variants: {
     isOpen: {
-      false: {},
       true: {
         trigger: {
           transform: "translateY(-2px)",
           backgroundColor: "white",
           boxShadow: "0px 5px 25px -4px rgba(0, 0, 0, token(opacity.shadow))",
+        },
+      },
+    },
+    multiple: {
+      true: {
+        item: {
+          padding: "6px 10px",
         },
       },
     },

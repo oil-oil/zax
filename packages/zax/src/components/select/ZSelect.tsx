@@ -11,6 +11,7 @@ import {
 } from "vue";
 
 import selectRecipe from "./recipe";
+import { ZCheckbox } from "../checkbox";
 import Arrow from "../icon/arrow";
 import useId from "@/src/hooks/useId";
 import { css, cx } from "@/styled-system/css";
@@ -29,9 +30,21 @@ export default defineComponent({
       type: String,
       default: css({ colorPalette: "blue" }),
     },
+    placeholder: {
+      type: String,
+      default: "Select option",
+    },
     multiple: {
       type: Boolean,
       default: false,
+    },
+    selectOnBlur: {
+      type: Boolean,
+      default: false,
+    },
+    closeOnSelect: {
+      type: Boolean,
+      default: true,
     },
   },
   emits: ["update:modelValue"],
@@ -43,6 +56,8 @@ export default defineComponent({
           items: toRaw(props.options),
         }),
         multiple: props.multiple,
+        selectOnBlur: props.selectOnBlur,
+        closeOnSelect: props.closeOnSelect,
         onValueChange(details) {
           emit("update:modelValue", details.value);
         },
@@ -54,7 +69,7 @@ export default defineComponent({
     );
 
     const classesRef = computed(() =>
-      selectRecipe({ isOpen: apiRef.value.isOpen }),
+      selectRecipe({ isOpen: apiRef.value.isOpen, multiple: props.multiple }),
     );
 
     watch(
@@ -83,7 +98,7 @@ export default defineComponent({
                   }),
               )}
             >
-              <span>{api.valueAsString || "Select option"}</span>
+              <span>{api.valueAsString || props.placeholder}</span>
               <Arrow
                 customCSS={css({
                   marginLeft: "16px",
@@ -98,10 +113,12 @@ export default defineComponent({
               leaveToClass={css({
                 opacity: 0,
                 boxShadow: "0px 0px 0px 0px token(opacity.shadow)",
+                marginTop: "-12px",
               })}
               enterFromClass={css({
                 opacity: 0,
                 boxShadow: "0px 0px 0px 0px token(opacity.shadow)",
+                marginTop: "-12px",
               })}
               enterActiveClass={css({
                 transition: "opacity 0.2s ease, margin 0.2s ease",
@@ -137,7 +154,16 @@ export default defineComponent({
                           }),
                         )}
                       >
-                        <span>{item.label}</span>
+                        {props.multiple ? (
+                          <ZCheckbox
+                            disabled={true}
+                            modelValue={api.getItemState({ item }).isSelected}
+                            label={item.label}
+                            color={props.color}
+                          />
+                        ) : (
+                          <span>{item.label}</span>
+                        )}
                       </li>
                     ))}
                   </ul>
