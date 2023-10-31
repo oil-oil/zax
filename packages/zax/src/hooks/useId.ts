@@ -15,7 +15,7 @@ const useId = (type: string) => {
     cacheId[type] = cacheId[type].filter((value) => value !== id);
   });
 
-  return { id };
+  return id;
 };
 
 export default useId;

@@ -38,6 +38,8 @@ const IconCheck = defineComponent({
         >
           <div
             class={css({
+              position: "absolute",
+              left: "0",
               width: "full",
               height: "full",
               borderLeft: "2px solid white",
@@ -46,6 +48,8 @@ const IconCheck = defineComponent({
           />
           <div
             class={css({
+              position: "absolute",
+              left: "0",
               width: "full",
               height: "full",
               borderBottom: "2px solid white",

@@ -3,7 +3,7 @@ import { RecipeVariantProps, sva } from "@/styled-system/css";
 const dialogRecipe = sva({
   slots: [
     "backdrop",
-    "container",
+    "positioner",
     "content",
     "title",
     "description",
@@ -25,7 +25,7 @@ const dialogRecipe = sva({
       justifyContent: "center",
       bgColor: "rgba(0,0,0,0.6)",
     },
-    container: {
+    positioner: {
       bgColor: "white",
       margin: "auto",
       color: "gray.700",
@@ -79,11 +79,11 @@ const dialogRecipe = sva({
   },
   variants: {
     size: {
-      xs: { container: { width: "240px" } },
-      sm: { container: { width: "320px" } },
-      md: { container: { width: "480px" } },
-      lg: { container: { width: "600px" } },
-      xl: { container: { width: "960px" } },
+      xs: { positioner: { width: "240px" } },
+      sm: { positioner: { width: "320px" } },
+      md: { positioner: { width: "480px" } },
+      lg: { positioner: { width: "600px" } },
+      xl: { positioner: { width: "960px" } },
     },
     blur: {
       false: {},
@@ -96,7 +96,7 @@ const dialogRecipe = sva({
     square: {
       false: {},
       true: {
-        container: {
+        positioner: {
           borderRadius: "0px",
         },
       },

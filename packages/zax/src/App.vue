@@ -9,11 +9,12 @@
     "
   >
     <div style="width: 120px">
-      <ZCheckbox></ZCheckbox>
+      <ZCheckbox label="label1" :color="css({ colorPalette: 'red' })" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ZCheckbox } from "./components/checkbox";
+import { css } from "@/styled-system/css";
 </script>
