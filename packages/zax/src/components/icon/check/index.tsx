@@ -53,7 +53,7 @@ const IconCheck = defineComponent({
               width: "full",
               height: "full",
               borderBottom: "2px solid white",
-              animation: "checkLong 0.5s",
+              animation: "checkLong 0.3s",
             })}
           />
         </div>
