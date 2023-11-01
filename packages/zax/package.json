@@ -31,6 +31,7 @@
     "@zag-js/checkbox": "^0.27.1",
     "@zag-js/dialog": "^0.27.1",
     "@zag-js/select": "^0.27.1",
+    "@zag-js/toast": "^0.27.1",
     "@zag-js/vue": "^0.27.1",
     "vue": "^3.3.4"
   },
