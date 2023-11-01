@@ -130,3 +130,4 @@ const ZCheckbox = defineComponent({
 });
 
 export default ZCheckbox;
+export type ZCheckboxProps = InstanceType<typeof ZCheckbox>["$props"];

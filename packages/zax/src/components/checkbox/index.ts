@@ -1,1 +1,1 @@
-export { default as ZCheckbox } from "./ZCheckbox";
+export { default as ZCheckbox, type ZCheckboxProps } from "./ZCheckbox";

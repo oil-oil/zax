@@ -91,6 +91,9 @@ importers:
       '@zag-js/select':
         specifier: ^0.27.1
         version: 0.27.1
+      '@zag-js/toast':
+        specifier: ^0.27.1
+        version: 0.27.1
       '@zag-js/vue':
         specifier: ^0.27.1
         version: 0.27.1(vue@3.3.4)
@@ -2848,6 +2851,17 @@ packages:
       '@zag-js/types': 0.12.0
       '@zag-js/utils': 0.12.0
     dev: true
+
+  /@zag-js/toast@0.27.1:
+    resolution: {integrity: sha512-cDa2NndmbwYQuWsaH2bdjGWk5jnfymGGIC6s9lM3nMZcHT4LNeHVbU26Ko3GmWrmsp/wQVIuyrcpOUw4Tzb9rQ==}
+    dependencies:
+      '@zag-js/anatomy': 0.27.1
+      '@zag-js/core': 0.27.1
+      '@zag-js/dom-event': 0.27.1
+      '@zag-js/dom-query': 0.27.1
+      '@zag-js/types': 0.27.1
+      '@zag-js/utils': 0.27.1
+    dev: false
 
   /@zag-js/tooltip@0.12.0:
     resolution: {integrity: sha512-PC5cQqgKTEqyCY6AKht71r0p/mvbxcJevLRhQ0cQR5H1+7mArgpQQJmWjuK9X4gTFkm31MohtaqE0TfNJvGydQ==}
