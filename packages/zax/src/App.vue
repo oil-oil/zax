@@ -26,10 +26,6 @@ const toastApi = computed(() =>
   toast.group.connect(state.value, send, normalizeProps),
 );
 
-watch(state, () => {
-  console.log(toastApi.value.toastsByPlacement);
-});
-
 const show = () => {
   toastApi.value.create({ title: "Hello", placement: "top-start" });
 };
