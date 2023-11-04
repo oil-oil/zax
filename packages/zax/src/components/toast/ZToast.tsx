@@ -1,16 +1,22 @@
 import * as toast from "@zag-js/toast";
-import { normalizeProps, useActor, useMachine } from "@zag-js/vue";
-import { PropType, computed, defineComponent, inject, reactive } from "vue";
+import { normalizeProps, useActor } from "@zag-js/vue";
+import { PropType, computed, defineComponent } from "vue";
 
-// 1. Create the single toast
 const ZToast = defineComponent({
   props: {
     actor: {
-      type: Object as PropType<any>,
+      type: Object as PropType<
+        Parameters<
+          typeof useActor<toast.MachineContext, toast.MachineState>
+        >["0"]
+      >,
+      required: true,
     },
   },
   setup(props) {
-    const [state, send] = useActor(props.actor);
+    const [state, send] = useActor<toast.MachineContext, toast.MachineState>(
+      props.actor,
+    );
     const apiRef = computed(() =>
       toast.connect(state.value, send, normalizeProps),
     );
