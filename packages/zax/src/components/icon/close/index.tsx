@@ -4,7 +4,7 @@ import { HTMLAttributes, PropType, defineComponent } from "vue";
 import { CompWithAttr } from "@/src/types/global";
 import { css, cx } from "@/styled-system/css";
 
-const Close = defineComponent({
+const IconClose = defineComponent({
   props: {
     color: {
       type: String,
@@ -57,4 +57,4 @@ const Close = defineComponent({
   },
 });
 
-export default Close as CompWithAttr<typeof Close, HTMLAttributes>;
+export default IconClose as CompWithAttr<typeof IconClose, HTMLAttributes>;

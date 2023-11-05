@@ -1,6 +1,6 @@
 import * as toast from "@zag-js/toast";
 import { PropTypes, normalizeProps, useMachine } from "@zag-js/vue";
-import { App as VueApp, computed, provide } from "vue";
+import { App as VueApp, computed } from "vue";
 
 import ZToast from "./ZToast";
 
@@ -17,12 +17,7 @@ const setupToast = (app: VueApp) => {
           <>
             {Object.entries(api.toastsByPlacement).map(
               ([placement, toasts]) => (
-                <div
-                  key={placement}
-                  {...api.getGroupProps({
-                    placement: placement as toast.Placement,
-                  })}
-                >
+                <div key={placement}>
                   {toasts.map((actor) => (
                     <ZToast key={actor.id} actor={actor} />
                   ))}
