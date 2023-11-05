@@ -14,7 +14,7 @@ import {
 
 import dialogRecipe, { DialogVariants } from "./recipe";
 import { ZButton } from "../button";
-import Close from "../icon/close";
+import IconClose from "../icon/close";
 import useId from "@/src/hooks/useId";
 import { css } from "@/styled-system/css";
 
@@ -173,7 +173,7 @@ const ZDialog = defineComponent({
                           dialogRecipe.raw().close as SystemStyleObject
                         }
                       >
-                        <Close />
+                        <IconClose />
                       </ZButton>
                     )}
                     <header {...api.titleProps} class={classes.title}>

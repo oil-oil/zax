@@ -3,7 +3,7 @@ import { HTMLAttributes, defineComponent } from "vue";
 import { CompWithAttr } from "@/src/types/global";
 import { css, cx } from "@/styled-system/css";
 
-const Arrow = defineComponent({
+const IconArrow = defineComponent({
   props: {
     color: {
       type: String,
@@ -56,4 +56,4 @@ const Arrow = defineComponent({
   },
 });
 
-export default Arrow as CompWithAttr<typeof Arrow, HTMLAttributes>;
+export default IconArrow as CompWithAttr<typeof IconArrow, HTMLAttributes>;

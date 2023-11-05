@@ -12,7 +12,7 @@ import {
 
 import selectRecipe from "./recipe";
 import { ZCheckbox } from "../checkbox";
-import Arrow from "../icon/arrow";
+import IconArrow from "../icon/arrow";
 import useId from "@/src/hooks/useId";
 import { css, cx } from "@/styled-system/css";
 
@@ -99,7 +99,7 @@ export default defineComponent({
               )}
             >
               <span>{api.valueAsString || props.placeholder}</span>
-              <Arrow
+              <IconArrow
                 customCSS={css({
                   marginLeft: "16px",
                   transform: api.isOpen ? "rotate(45deg)" : "rotate(-135deg)",
